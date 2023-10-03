@@ -1,0 +1,26 @@
+{
+  "name": "frisa",
+  "version": "1.0.0",
+  "description": "Administrator website for Fundacion FRISA Mobile App",
+  "main": "schema.js",
+  "workspaces": [
+    "server",
+    "web"
+  ],
+  "scripts": {
+    "db:reset": "npm run db:reset --workspace=server",
+    "build": "npm run build --workspace=web",
+    "start": "npm run start --workspace=server",
+    "lint": "prettier --check ."
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "mysql2": "^3.2.4",
+    "mysql2-promise": "^0.1.4"
+  },
+  "devDependencies": {
+    "prettier": "^2.8.8"
+  }
+}

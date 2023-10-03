@@ -1,0 +1,11 @@
+# @name createOSC
+POST http://localhost:8080/api/oscs
+content-type: application/json
+
+{
+    "name": "New OSC",
+    "description": "This is a new Organization for Social Change.",
+    "contactEmail": "newosc@oscapp.com",
+    "contactPhone": "123-456-7890",
+    "category": "Education"
+}

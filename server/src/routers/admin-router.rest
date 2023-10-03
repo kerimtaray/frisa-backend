@@ -1,0 +1,10 @@
+# @name getAdminInfo
+GET http://localhost:8080/api/admins/1/info
+
+POST http://localhost:8080/api/login
+content-type: application/json
+
+{
+    "email": "admin13@oscapp.com",
+    "password": "adminpassword"
+}

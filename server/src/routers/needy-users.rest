@@ -1,0 +1,9 @@
+# @name createNeedyUser
+POST http://localhost:8080/api/needy-users
+content-type: application/json
+
+{
+    "email": "newneedyuser@oscapp.com",
+    "password": "needyuserpassword",
+    "fullName": "New Needy User"
+}
