@@ -17,6 +17,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "mongoose": "^7.5.3",
     "mysql2": "^3.2.4",
     "mysql2-promise": "^0.1.4"
   },

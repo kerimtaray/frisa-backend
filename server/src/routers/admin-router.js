@@ -12,29 +12,29 @@ adminRouter.post("/login", async (req, res) => {
       .object({ email: z.string(), password: z.string() })
       .parse(req.body);
 
+    // Check Administrators
     const [administrators] = await pool.query(
-      "SELECT id, fullName, password FROM Administrators WHERE email = ?",
-      [email]
+      "SELECT id, fullName FROM Administrators WHERE email = ? AND password = ?",
+      [email, password]
     );
 
     if (administrators.length > 0) {
       const user = administrators[0];
-
-      // Verificar la contraseña usando bcrypt o similar
-      const isPasswordValid = true;
-
-      if (isPasswordValid) {
-        // Crear un JWT
-        const token = jwt.sign(
-          { id: user.id, role: "ADMINISTRATOR" },
-          "secretKey",
-          { expiresIn: "1h" }
-        );
-        res.status(200).send({ role: "ADMINISTRATOR", token, ...user });
-        return;
-      }
+      res.status(200).send({ role: "ADMINISTRATOR", ...user });
+      return;
     }
 
+    // Check NeedyUsers
+    const [needyUsers] = await pool.query(
+      "SELECT id, fullName FROM NeedyUsers WHERE email = ? AND password = ?",
+      [email, password]
+    );
+
+    if (needyUsers.length > 0) {
+      const user = needyUsers[0];
+      res.status(200).send({ role: "NEEDYUSER", ...user });
+      return;
+    }
     res.status(404).send("User not found. Email or password are incorrect.");
   } catch (error) {
     res.status(400).send({ error: error.message || "Unknown error" });
